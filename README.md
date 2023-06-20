@@ -1,12 +1,17 @@
 ![1920x1080](https://github.com/humancontroller/Summer-HackaDOT-2023/assets/131235865/f800ef65-029d-4288-ab05-e1b380cb9b2a)
-# NFT CAMERA
-This is a camera for creating NFT art collections.  
+# Blockchain CAMERA
+This is a camera for creating NFT art collections. 
+
+## Changes from NFT Camera
+Raspberry Pi 3B -> Raspberry Pi 4
+Added object detection
+Add image hashing
 
 ## DEMO
-[NFT Minting Demo](https://www.youtube.com/watch?v=xJzr7CZCeNg)
+[NFT Minting Demo](https://youtu.be/nMrktBM90W8)
 
-## MINTED NFTS
-[TOFUNFT](https://tofunft.com/user/0x162F8D8be3DBf23faa647f3C4cB73855D939B7ea/items/in-wallet)
+## MINTED NFT
+[TOFUNFT](https://tofunft.com/nft/astar/0x718a79F8A671c6013ECd4FbfcC17fbe0A208D7B5/92)
 
 ## WARNING
 When you press the Mint button, a photo will be shot and the photo will be stored in IPFS at the same time.  
@@ -18,7 +23,7 @@ This is a prototype and a product in development.
 
 ## SOFTWARE
 ### 1.Equipment
-Raspberry Pi 3 Model B  
+Raspberry Pi 4 Model B / 2GB
 Raspberry Pi Camera V2  
 SanDisk microSD 32GB Extreme Pro U3 V30 A1  
 OSOYOO Raspberry Pi Touch Screen 3.5"  
