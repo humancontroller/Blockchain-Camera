@@ -15,9 +15,7 @@ Add image hashing
 
 ## WARNING
 When you press the Mint button, a photo will be shot and the photo will be stored in IPFS at the same time.  
-Next, when you touch Confirm on Metamask displayed on the touch panel, the NFT will be minted.  
-Currently I don't have a way to burn minted NFTs.
-So shoot carefully.  
+Next, when you touch Confirm on Metamask displayed on the touch panel, the NFT will be minted.   
 This is a prototype and a product in development.
 
 
