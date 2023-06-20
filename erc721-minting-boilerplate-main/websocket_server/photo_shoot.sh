@@ -1,5 +1,5 @@
 #!/bin/bash
 
-raspistill -t 1 -n -w 1000 -h 1000 -rot 180 -o ./photo.jpg
+raspistill -t 1 -n -w 300 -h 300 -rot 180 -ex auto -o ./$1
 
 killall matchbox-keyboard

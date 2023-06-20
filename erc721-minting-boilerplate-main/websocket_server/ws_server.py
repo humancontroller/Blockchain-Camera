@@ -5,12 +5,17 @@ import time
 import io
 from PIL import Image
 import os
+import base64
+import json
+import hashlib
+from detect import detect
 
 gpio_shoot = 26
 
 GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(gpio_shoot, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
 
 async def handler(websockets):
 
@@ -23,13 +28,31 @@ async def handler(websockets):
         sw = GPIO.input(gpio_shoot)
 
         if 0==sw and send_flg==False:
-            os.system("sh photo_shoot.sh")
+            
+            ut = time.time()
+            fname = str(ut) + '.jpg'
+            print(fname)
+            os.system('sh photo_shoot.sh ./' + fname)
+            tmpimg = Image.open('./' + fname)
 
-            tmpimg = Image.open("./photo.jpg")
+            with open('./'+fname, 'rb') as f:
+              sha256 = hashlib.sha256(f.read()).hexdigest()
+
             with io.BytesIO() as output:
                 tmpimg.save(output,format="JPEG")
                 contents = output.getvalue()
-                await websockets.send(contents)
+
+                b64encoded = base64.b64encode(contents).decode('utf-8')
+                d = {'image': b64encoded}
+
+                objects = detect("efficientdet_lite0.tflite", 0, 300, 300, 4, False, fname)
+                d['objects'] = objects
+                d['filename'] = fname
+                d['sha256'] = sha256
+
+                json_data = json.dumps(d, indent=4)
+
+                await websockets.send(json_data)
 
             send_flg = True
             print("ON")
