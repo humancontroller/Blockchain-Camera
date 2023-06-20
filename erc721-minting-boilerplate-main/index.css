@@ -39,6 +39,11 @@ code {
   margin-top: 40px;
 }
 
+.objects {
+  font-size: 15px;
+  margin-top: 40px;
+}
+
 .center {
   display: flex;
   justify-content: center;
