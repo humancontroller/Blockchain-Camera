@@ -9,15 +9,37 @@ const nftStorage = new NFTStorage({
   token: process.env.REACT_APP_NFT_STORAGE_KEY,
 });
 
-const store = async (name, description, data, fileName, type) => {
+const obj_max = 5
+
+const store = async (name, description, data, fileName, type, attributes, sha256) => {
   const metadata = await nftStorage.store({
     name,
     description,
     image: new File([data], fileName, { type }),
+    attributes,
+    sha256,
   });
   console.log(metadata);
   return metadata;
 };
+
+
+function b64DecodeUnicode(str) {
+  var binaryStr = atob(str);
+
+  var utf8Str = '';
+  for (var i = 0; i < binaryStr.length; i++) {
+    utf8Str += String.fromCharCode(binaryStr.charCodeAt(i));
+  }
+
+  var bytes = new Uint8Array(utf8Str.length);
+  for (var j = 0; j < utf8Str.length; j++) {
+    bytes[j] = utf8Str.charCodeAt(j);
+  }
+
+  return bytes;
+}
+
 
 export const ERC721Camera = () => {
   const { userAddress, mintNFT } = useWeb3();
@@ -35,11 +57,13 @@ export const ERC721Camera = () => {
   const [image, setImage] = useState("");
   const {getTotalSupply} = useWeb3();
 
+  const [objects, setObjects] = useState("");
+  const [sha256, setSha256] = useState("");
+
   const readAsBlob = (file) => {
     const reader = new FileReader();
     reader.readAsArrayBuffer(file);
     reader.onload = () => {
-      //console.log(reader.result);
       setBlob(reader.result);
     };
   };
@@ -48,7 +72,6 @@ export const ERC721Camera = () => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      //console.log(reader.result);
       setBase64(reader.result);
     };
   };
@@ -60,9 +83,25 @@ export const ERC721Camera = () => {
     console.log("fileName : " + fileName);
     console.log("type : " + type);
 
+    let attributes = [];
+    const obj_cnt = objects.length
+
+    attributes[0] = {trait_type: 'Obj Count', value: obj_cnt}
+
+    for (let i=1; i<=obj_max; i++) {
+      if (i <= obj_cnt) {
+        attributes[i] = {trait_type: 'Obj'+i, value: objects[i-1]}
+      }
+      else {
+        attributes[i] = {trait_type: 'Obj'+i, value: 'none'}
+      }
+    }
+    console.log(attributes)
+
+
     setOnGoing(true);
     try {
-      const metadata = await store(name, description, blob, fileName, type);
+      const metadata = await store(name, description, blob, fileName, type, attributes, sha256);
       const inputUrl = metadata.url.replace(/^ipfs:\/\//, "");
 
       const tx = await mintNFT(userAddress, inputUrl);
@@ -112,9 +151,18 @@ export const ERC721Camera = () => {
 
       await setName(nftName + nextId.toString());
 
-      const jpeg_data = message.data
-      await readAsBlob(jpeg_data);
-      await readAsBase64(jpeg_data);
+      var jsonData = await JSON.parse(message.data)
+      var decodeImage = await b64DecodeUnicode(jsonData.image)
+      var blobImage= await new Blob([decodeImage], { type: 'image/jpeg' });
+
+      await setObjects(jsonData.objects)
+      await setFileName(jsonData.filename)
+      await setSha256(jsonData.sha256)
+
+      await readAsBlob(blobImage);
+      await readAsBase64(blobImage);
+
+      console.log(jsonData.objects)
     };
   };
 
@@ -128,7 +176,7 @@ export const ERC721Camera = () => {
     }
   }, [blob]);
 
-  window.onload = async function(){	// 2023.05.27 ADD
+  window.onload = async function(){
     connect();
   }
 
@@ -140,6 +188,7 @@ export const ERC721Camera = () => {
           {onGoing ? (
             <>
               <div className="name">Minting...</div>
+              <div className="objects">{objects.length}</div>
             </>
           ) : (
             <>
@@ -150,7 +199,7 @@ export const ERC721Camera = () => {
         </>
       ) : (
         <>
-          <div className = "title">NFT camera</div>
+          <div className = "title">NFT</div>
         </>
       )}
     </div>
