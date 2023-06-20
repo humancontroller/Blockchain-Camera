@@ -1,11 +1,11 @@
 ![1920x1080](https://github.com/humancontroller/Summer-HackaDOT-2023/assets/131235865/f800ef65-029d-4288-ab05-e1b380cb9b2a)
-# Blockchain CAMERA
+# Blockchain Camera
 This is a camera for creating NFT art collections. 
 
 ## Changes from NFT Camera
-Raspberry Pi 3B -> Raspberry Pi 4
-Added object detection
-Add image hashing
+Raspberry Pi 3B -> Raspberry Pi 4B  
+Added object detection  
+Add image hashing  
 
 ## DEMO
 [NFT Minting Demo](https://youtu.be/nMrktBM90W8)
