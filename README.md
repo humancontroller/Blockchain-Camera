@@ -4,11 +4,15 @@ This is software to be installed on the Raspberry Pi 4 built into the Blockchain
 For information on how to make that hardware, refer to the BUILD INSTRUCTIONS of Blockchain Camera posted on HACKADAY.IO.
 [HACKADAY.IO](https://hackaday.io/project/192538-blockchain-camera)
 
-## 1.Equipment
-Raspberry Pi 4 Model B / 2GB
-Raspberry Pi Camera V2  
-SanDisk microSD 32GB Extreme Pro U3 V30 A1  
-OSOYOO Raspberry Pi Touch Screen 3.5"  
+## 1.COMPONENTS
+- Raspberry Pi 4 Model B 2GB  
+- SanDisk microSD 32GB Extreme Pro U3 V30 A1  
+- Anker Power Core 10000 PD Redux  
+- USB CABLE A-MICROB (2A L0.3m)  
+- BUFFALO Conversion Adapter microB to TypeC Black BSMPCADC100BK  
+- OSOYOO Raspberry Pi Touch Screen 3.5"  
+- Raspberry Pi Camera V2  
+- Adafruit Flat Flex Cables for Raspberry Pi Camera - 200mm  
  
 The NFT camera does not require 32GB of microSD capacity, but the faster the read/write speed, the better.  
 Depending on the read/write speed of the microSD, the startup time of NFT Camera will change by a few minutes.
