@@ -7,17 +7,17 @@ For information on how to make that hardware, refer to the BUILD INSTRUCTIONS of
 ## 1.COMPONENTS
 - Raspberry Pi 4 Model B 2GB  
 - SanDisk microSD 32GB Extreme Pro U3 V30 A1  
-- Anker Power Core 10000 PD Redux  
-- USB CABLE A-MICROB (2A L0.3m)  
-- BUFFALO Conversion Adapter microB to TypeC Black BSMPCADC100BK  
 - OSOYOO Raspberry Pi Touch Screen 3.5"  
 - Raspberry Pi Camera V2  
 - Adafruit Flat Flex Cables for Raspberry Pi Camera - 200mm  
- 
-The NFT camera does not require 32GB of microSD capacity, but the faster the read/write speed, the better.  
-Depending on the read/write speed of the microSD, the startup time of NFT Camera will change by a few minutes.
 
-## 2.Raspberry Pi OS Installation 
+## 2.TOOLS
+- PC
+- Micro SD Card Reader
+- Wi-Fi
+- USB Type-C - AC Power Supply
+
+## 3.Raspberry Pi OS Installation 
 Install Raspberry Pi OS (32-bit) on microSD using Raspberry Pi Imager on PC. 
 
 Insert the microSD into the Raspberry Pi and boot.  
@@ -36,7 +36,7 @@ $ uname -a
 Linux raspberrypi 4.15.18-v7 #1 SMP Mon May 7 16:35:40 CST 2018 armv7l GNU/Linux
 ```
 
-## 3.Enable Raspberry Pi Camera
+## 4.Enable Raspberry Pi Camera
 ```
 $ sudo raspi-config
 ```
@@ -47,7 +47,7 @@ $ vcgencmd get_camera
 supported=1 detected=1, libcamera interfaces=0
 ```
 
-## 4.Increase Swap Space
+## 5.Increase Swap Space
 Increase the swap space to prevent memory shortage.  
 Check current swap space.  
 ```
@@ -63,7 +63,7 @@ $ sudo /etc/init.d/dphys-swapfile restart
 $ swapon -s
 ```
 
-## 5.Touch Screen Settings
+## 6.Touch Screen Settings
 Use OSOYOO Raspberry Pi Touch Screen 3.5".  
 Change screen resolution to 810x540.
 When you run the shell to enable the touchscreen, the camera is not recognized.  
@@ -112,7 +112,7 @@ Add Option "TransformationMatrix" "0 1 0 -1 0 1 0 0 1" to /usr/share/X11/xorg.co
 Reboot the Raspberry Pi and check that the screen has been rotated 90 degrees.  
 Check that the touchscreen recognizes touches correctly.  
 
-## 6.Software Keyboard Installation
+## 7.Software Keyboard Installation
 Software keyboard is used for Metamask password input.  
 ```
 $ sudo apt-get install matchbox-keyboard
@@ -125,16 +125,16 @@ Replace /usr/share/matchbox-keyboard/keyboard.xml with keyboard.xml from this re
 Add the Software keyboard to the top panel.
 
 
-## 7.Chromium Installation
+## 8.Chromium Installation
 ```
 $ sudo apt install chromium
 Y
 ```
 
-## 8.Metamask
+## 9.Metamask
 Add Metamask to Chromium and create a wallet.  
 
-## 9.Bunzz official ERC721 Minting Boilerplate
+## 10.Bunzz official ERC721 Minting Boilerplate
 The software of NFT Camera is software modified from Bunzz's ERC721 Minting Boilerplate.  
 Install up to 4. Update constant.js of ERC721 Minting Boilerplate.  
 https://github.com/lastrust/erc721-minting-boilerplate  
@@ -161,7 +161,7 @@ $ python -m pip install --upgrade pip setuptools
 $ pip install websockets
 ```
 
-## 10.NFT Camera Software Installation
+## 11. Blockchain Camera Software Installation
 Replace the files in the erc721-minting-boilerplate-main folder of this repository with your current files.  
 And place the following three files of this repository in the $HOME directory.  
 ```
@@ -170,5 +170,5 @@ shutdown.sh
 start.sh
 ```
 
-## 11.Autostart Settings
+## 12.Autostart Settings
 Place the autostart of this repository in the $HOME/.config/lxsession/LXDE-pi directory.  
