@@ -1,6 +1,8 @@
 ![1920x1080](https://github.com/humancontroller/Summer-HackaDOT-2023/assets/131235865/f800ef65-029d-4288-ab05-e1b380cb9b2a)
 # Blockchain Camera
-This is a camera for creating NFT art collections. 
+This is software to be installed on the Raspberry Pi 4 built into the Blockchain camera hardware.  
+See below for how to make Blockchain camera hardware.  
+[HACKADAY.IO](https://hackaday.io/project/192538-blockchain-camera)
 
 ## Changes from NFT Camera
 Raspberry Pi 3B -> Raspberry Pi 4B  
