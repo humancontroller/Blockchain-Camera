@@ -13,7 +13,7 @@ For information on how to make that hardware, refer to the BUILD INSTRUCTIONS of
 
 ## 2.TOOLS
 - PC
-- Micro SD Card Reader
+- MicroSD Card Reader
 - Wi-Fi
 - USB Type-C - AC Power Supply
 
